@@ -11,6 +11,8 @@ import {UpdateModalComponent} from "./component/update-modal/update-modal.compon
 import {DeleteModalComponent} from "./component/delete-modal/delete-modal.component";
 import {CustumerComponent} from "./component/custumer/custumer.component";
 import {AppRoutingModule} from "./app-routing.module";
+import { AccountComponent } from './component/account/account.component';
+import { SearchAccComponent } from './component/search-acc/search-acc.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import {AppRoutingModule} from "./app-routing.module";
     NavbarComponent,
     AddModalComponent,
     UpdateModalComponent,
-    DeleteModalComponent
+    DeleteModalComponent,
+    AccountComponent,
+    SearchAccComponent,
   ],
   imports: [
     BrowserModule,
