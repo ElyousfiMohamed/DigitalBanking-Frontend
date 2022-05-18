@@ -1,0 +1,35 @@
+<!-- Update Modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addModalLabel">Modifier Etudiant</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #updateForm="ngForm" (ngSubmit)="onUpdateCustumer(updateForm)">
+          <div class="mb-3">
+            <label for="nom" class="form-label">Nom</label>
+            <input type="hidden" ngModel="{{custumer?.id}}" name="id">
+            <input type="text" ngModel="{{custumer?.nom}}" ngDefaultControl class="form-control" id="nom" name="nom" required>
+            <span class="text-danger"></span>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" ngModel="{{custumer?.email}}" class="form-control" id="email" name="email" required>
+            <span class="text-danger" ></span>
+          </div>
+          <div class="mb-3">
+            <label for="image" class="form-label">Image url</label>
+            <input type="text" ngModel="{{custumer?.imageUrl}}" class="form-control" value="{{custumer?.imageUrl}}" id="image" name="imageUrl" required>
+            <span class="text-danger" ></span>
+          </div>
+          <div class="modal-footer">
+            <button id="closed" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" [disabled]="updateForm.invalid" class="btn btn-primary">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

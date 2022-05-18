@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row" style="margin-top: 150px">
+    <div><a href="" class="mb-5 btn btn-primary" style="color: white" data-bs-toggle="modal" data-bs-target="#addModal"><b>Ajouter client</b></a></div>
+    <div class="col-md-6 col-xl-4" *ngFor="let e of custumers">
+      <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        <div class="card-body d-inline-flex">
+          <div class="col-6">
+            <div ><img [src]="e.imageUrl" alt="" class="img-fluid w-75"></div>
+          </div>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <h5>Nom du client : {{e.nom}}</h5>
+          </li>
+          <li class="list-group-item"><i class="fa fa-envelope float-right"></i> Email : <span style="font-weight: bold">
+            {{ e.email }}
+          </span>
+        </ul>
+        <div class="card-body">
+          <div class="float-right btn-group d-flex justify-content-center align-items-center mx-5 px-5">
+            <a href="#" class="btn btn-warning tooltips" data-toggle="tooltip" data-bs-toggle="modal" data-bs-target="#updateModal"
+               data-original-title="Edit" style="color: white" (click)="currentCustumer(e)"><i class="fa fa-pencil"></i> </a>
+            <a href="#" class="btn btn-danger tooltips" data-toggle="tooltip" data-bs-toggle="modal" data-bs-target="#deleteModal"
+               data-original-title="Delete" style="color: white" (click)="currentCustumer(e)"><i class="fa fa-times"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-add-modal (notify)="getIt()"></app-add-modal>
+<app-update-modal [custumer]="custumerCurrent" (notify0)="getIt()"></app-update-modal>
+<app-delete-modal [custumer]="custumerCurrent" (notify1)="getIt()"></app-delete-modal>
+
+
