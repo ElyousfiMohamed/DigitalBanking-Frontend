@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CustumerService} from "./service/custumer.service";
 import {NavbarComponent} from "./component/navbar/navbar.component";
 import {AddModalComponent} from "./component/add-modal/add-modal.component";
@@ -29,7 +29,8 @@ import { SearchAccComponent } from './component/search-acc/search-acc.component'
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [CustumerService],
   bootstrap: [AppComponent]
