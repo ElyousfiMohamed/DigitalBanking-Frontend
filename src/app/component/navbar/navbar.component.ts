@@ -25,13 +25,24 @@ export class NavbarComponent implements OnInit {
   }
 
   search(kw: string) {
-    this.custumers0 = [];
+    /*this.custumers0 = [];
     for (const custumer of this.custumers1) {
       if(custumer.nom.toLowerCase().indexOf(<string>kw.toLowerCase()) !== -1
       || custumer.email.toLowerCase().indexOf(<string>kw.toLowerCase()) !== -1) {
         this.custumers0.push(custumer);
       }
-    }
+    }*/
+
+    this.custumerSRV.getCustumersByKw(kw).subscribe(
+      (response: Customer[]) => {
+        console.log(response)
+        this.custumers0 = response;
+      },
+      (error:HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+
     if(kw === "")
       this.notify3.emit()
 

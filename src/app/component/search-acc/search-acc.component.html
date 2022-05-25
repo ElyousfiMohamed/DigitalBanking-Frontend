@@ -20,8 +20,8 @@
           <div class="col-sm-12">
             <div class="card">
               <div class="card-body">
-                <h6>Account id : {{account?.id}}</h6>
-                <h6>Account balance : {{account?.balance}}</h6>
+                <h6><b>Account id : </b>{{account?.id}}</h6>
+                <h6><b>Account balance : </b>{{account?.balance}}</h6>
               </div>
             </div>
           </div>
@@ -43,7 +43,7 @@
                     <td class="text-end">{{op.amount | number : '1.2-2'}}</td>
                   </tr>
                   </tbody>
-                </table>
+                </table><
                 <ul class="nav nav-pills d-flex align-content-center justify-content-center">
                   <li *ngFor="let item of [].constructor(account.totalPages);let page=index">
                     <a [ngClass]="page==currPage?'btn-primary':'btn-outline-primary'" (click)="gotoPage(page)" class="btn  ms-1 mt-1">{{page}}</a>
@@ -55,9 +55,46 @@
           <div class="col-sm-4">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <div>
+                  <div id="op">
+                  <select class="form-select" aria-label="Default select example" id="operationType" #operationType>
+                    <option value="credit" (click)="handleSelectOp(1)">Credit</option>
+                    <option value="debit" (click)="handleSelectOp(2)">Debit</option>
+                    <option value="transfer" (click)="handleSelectOp(3)">Transfer</option>
+                  </select><br>
+                  <div>
+                    <div class="mb-3">
+                      <label class="form-label">Amount :</label>
+                      <input type="number" class="form-control" #amount>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Description :</label>
+                      <input type="text" class="form-control" #desciption>
+                    </div>
+                    <div class="d-grid mb-3">
+                      <button class="btn btn-success" (click)="onSubmitOp(amount.value,desciption.value)">Save Operation</button>
+                    </div>
+                  </div>
+
+                    <div *ngIf="opNumber === 3">
+                      <div class="mb-3">
+                        <label class="form-label">Account Destination :</label>
+                        <input type="text" class="form-control" #destination>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Amount :</label>
+                        <input type="number" class="form-control" #amount>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Description :</label>
+                        <input type="text" class="form-control" #desciption>
+                      </div>
+                      <div class="d-grid mb-3">
+                        <button class="btn btn-success" (click)="onSubmitOpT(destination.value, amount.value,desciption.value)">Save Operation</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

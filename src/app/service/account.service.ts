@@ -1,8 +1,16 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 import {Account} from "../model/bankaccount";
+
+const optionRequete = {
+  headers: new HttpHeaders({
+    'Access-Control-Allow-Origin':'*',
+    'Content-Type':'application/json',
+    'Access-Control-Allow-Methods':'POST',
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +24,14 @@ export class AccountService {
   }
   public debit(accountId : string, amount : number, description:string){
     let data={accountId : accountId, amount : amount, description : description}
-    return this.http.post(environment.apiBaseUrl+"/bankAccounts/debit",data);
+    return this.http.post(environment.apiBaseUrl+"/bankAccounts/debit",data,optionRequete);
   }
   public credit(accountId : string, amount : number, description:string){
     let data={accountId : accountId, amount : amount, description : description}
-    return this.http.post(environment.apiBaseUrl+"/bankAccounts/credit",data);
+    return this.http.post(environment.apiBaseUrl+"/bankAccounts/credit",data,optionRequete);
   }
   public transfer(accountSource: string,accountDestination: string, amount : number, description:string){
     let data={accountSource, accountDestination, amount, description }
-    return this.http.post(environment.apiBaseUrl+"/bankAccounts/transfer",data);
+    return this.http.post(environment.apiBaseUrl+"/bankAccounts/transfer",data,optionRequete);
   }
 }

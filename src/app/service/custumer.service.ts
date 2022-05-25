@@ -1,8 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Customer } from '../model/custumer';
 import {environment} from "../../environments/environment";
+import {CustumerComponent} from "../component/custumer/custumer.component";
+
+const optionRequete = {
+  headers: new HttpHeaders({
+    'Access-Control-Allow-Origin':'*',
+    'Content-Type':'application/json',
+    'Access-Control-Allow-Methods':'PUT, GET, POST, DELETE',
+    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +25,8 @@ export class CustumerService {
     return this.http.get<Customer[]>(`${this.apServerUrl}/customers`);
   }
 
-  public getCustumersByKw(keyword: string | undefined): Observable<Customer[]> {
-    return this.http.get<Customer[]>(`${this.apServerUrl}/customers/${keyword}`);
+  public getCustumersByKw(kw:string): Observable<Customer[]> {
+    return this.http.get<Customer[]>(`${this.apServerUrl}/customers/search?kw=${kw}`,optionRequete);
   }
 
   public addCustumer(custumer: Customer): Observable<Customer> {

@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import {Component, Input, OnInit} from '@angular/core';
 import { CustumerService } from 'src/app/service/custumer.service';
 import {Customer} from "../../model/custumer";
+import {NodeService} from "../../service/node-service.service";
 
 @Component({
   selector: 'app-customer',
@@ -10,18 +11,20 @@ import {Customer} from "../../model/custumer";
 })
 export class CustumerComponent implements OnInit {
   public custumers: Customer[] = [];
+  @Input() cust:Customer[] = [];
 
-  constructor(private custumerSRV: CustumerService) { }
+  constructor(private custumerSRV: CustumerService,private nodeService:NodeService) {
+    nodeService.custumers$.subscribe(n => this.custumers = n);
+  }
 
   custumerCurrent: Customer = this.custumers[0];
 
   ngOnInit(): void {
     this.getCustumers();
-    console.log(this.custumers);
   }
 
   public getCustumers(): void {
-    this.custumerSRV.getCustumers().subscribe(
+    this.custumerSRV.getCustumersByKw("").subscribe(
       (response: Customer[]) => {
         this.custumers = response;
       },

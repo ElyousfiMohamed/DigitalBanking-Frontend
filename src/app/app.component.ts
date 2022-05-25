@@ -2,16 +2,17 @@ import {Component, OnInit} from '@angular/core';
 import {Customer} from "./model/custumer";
 import {CustumerService} from "./service/custumer.service";
 import {HttpErrorResponse} from "@angular/common/http";
+import {NodeService} from "./service/node-service.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent{
+export class AppComponent implements OnInit{
   title = 'DigitalBanking-Frontend';
 
-  constructor(private custumerSRV: CustumerService) { }
+  constructor(private custumerSRV: CustumerService,private nodeService:NodeService) { }
 
   public custumers: Customer[] = [];
 
@@ -31,6 +32,12 @@ export class AppComponent{
   }
 
   getSearch(custumersSearch: Customer[]) {
-    this.custumers = custumersSearch;
+    this.nodeService.addCustumers(custumersSearch)
+  }
+
+  ngOnInit(): void {
+    this.custumerSRV.getCustumers().subscribe(value => {
+      this.custumers = value;
+    })
   }
 }
