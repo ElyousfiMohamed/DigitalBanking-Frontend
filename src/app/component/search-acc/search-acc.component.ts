@@ -19,6 +19,9 @@ export class SearchAccComponent implements OnInit {
   sizePage: number = 5;
   account: Account | undefined;
   opNumber: number = 0;
+  dest: any;
+  amnt: any;
+  desc: any;
 
   ngOnInit(): void {
   }
@@ -48,6 +51,7 @@ export class SearchAccComponent implements OnInit {
       this.accountSRV.credit(this.account!.id, temp, description).subscribe({
         next: (data) => {
           this.handleSearchAccount(this.account!.id);
+          this.dest = this.amnt = this.desc = "";
         },
         error: (err) => {
           console.log(err);
@@ -60,6 +64,7 @@ export class SearchAccComponent implements OnInit {
       this.accountSRV.debit(this.account!.id, temp, description).subscribe({
         next: (data) => {
           this.handleSearchAccount(this.account!.id);
+          this.dest = this.amnt = this.desc = "";
         },
         error: (err) => {
           console.log(err);
@@ -70,7 +75,14 @@ export class SearchAccComponent implements OnInit {
 
   onSubmitOpT(destination: string, amount: string, description: string) {
     var temp: number = +amount;
-    this.accountSRV.transfer(destination, this.account!.id, temp, description);
-    this.handleSearchAccount(this.account!.id);
+    this.accountSRV.transfer(destination, this.account!.id, temp, description).subscribe({
+      next:(data) => {
+        this.handleSearchAccount(this.account!.id);
+        this.dest = this.amnt = this.desc = "";
+    },
+      error: (err => {
+        console.log(err);
+      })
+    });
   }
 }

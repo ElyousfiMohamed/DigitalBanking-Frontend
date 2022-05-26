@@ -2,7 +2,7 @@
 <div class="container bootstrap snippets bootdey">
   <div class="row">
     <div>
-      <h2 class="fw-bold" style="color: #1976d2">Comptes</h2>
+      <h2 class="fw-bold" style="padding-bottom: 20px;color: #1976d2">Comptes</h2>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="well search-result">
@@ -80,15 +80,15 @@
                     <div *ngIf="opNumber === 3">
                       <div class="mb-3">
                         <label class="form-label">Account Destination :</label>
-                        <input type="text" class="form-control" #destination>
+                        <input type="text" class="form-control" [(ngModel)]="dest" #destination>
                       </div>
                       <div class="mb-3">
                         <label class="form-label">Amount :</label>
-                        <input type="number" class="form-control" #amount>
+                        <input type="number" class="form-control" [(ngModel)]="amnt" #amount>
                       </div>
                       <div class="mb-3">
                         <label class="form-label">Description :</label>
-                        <input type="text" class="form-control" #desciption>
+                        <input type="text" class="form-control" [(ngModel)]="desc" #desciption>
                       </div>
                       <div class="d-grid mb-3">
                         <button class="btn btn-success" (click)="onSubmitOpT(destination.value, amount.value,desciption.value)">Save Operation</button>
