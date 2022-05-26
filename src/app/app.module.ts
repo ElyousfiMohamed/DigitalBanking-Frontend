@@ -13,7 +13,6 @@ import {CustumerComponent} from "./component/custumer/custumer.component";
 import {AppRoutingModule} from "./app-routing.module";
 import { AccountComponent } from './component/account/account.component';
 import { SearchAccComponent } from './component/search-acc/search-acc.component';
-import { AccComponent } from './component/acc/acc.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +24,6 @@ import { AccComponent } from './component/acc/acc.component';
     DeleteModalComponent,
     AccountComponent,
     SearchAccComponent,
-    AccComponent
   ],
   imports: [
     BrowserModule,

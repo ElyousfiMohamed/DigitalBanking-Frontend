@@ -18,7 +18,7 @@ export class SearchAccComponent implements OnInit {
   currPage: number = 0;
   sizePage: number = 5;
   account: Account | undefined;
-  opNumber: number = 1;
+  opNumber: number = 0;
 
   ngOnInit(): void {
   }
@@ -27,7 +27,6 @@ export class SearchAccComponent implements OnInit {
     this.accountSRV.getAccount(id, this.currPage, this.sizePage).subscribe(
       (response: Account) => {
         this.account = response;
-        console.log(this.account);
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -46,7 +45,6 @@ export class SearchAccComponent implements OnInit {
   onSubmitOp(amount: string, description: string) {
     if (this.opNumber === 1) {
       var temp: number = +amount;
-      console.log(this.account!.id + " " + temp + " " + description)
       this.accountSRV.credit(this.account!.id, temp, description).subscribe({
         next: (data) => {
           this.handleSearchAccount(this.account!.id);
@@ -61,7 +59,6 @@ export class SearchAccComponent implements OnInit {
       var temp: number = +amount;
       this.accountSRV.debit(this.account!.id, temp, description).subscribe({
         next: (data) => {
-          alert("Success Debit");
           this.handleSearchAccount(this.account!.id);
         },
         error: (err) => {
@@ -71,8 +68,9 @@ export class SearchAccComponent implements OnInit {
     }
   }
 
-  onSubmitOpT(destination: String, amount: string, description: string) {
+  onSubmitOpT(destination: string, amount: string, description: string) {
     var temp: number = +amount;
-    this.accountSRV.transfer(description, this.account!.id, temp, description);
+    this.accountSRV.transfer(destination, this.account!.id, temp, description);
+    this.handleSearchAccount(this.account!.id);
   }
 }

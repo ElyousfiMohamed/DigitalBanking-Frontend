@@ -30,8 +30,8 @@ export class AccountService {
     let data={accountId : accountId, amount : amount, description : description}
     return this.http.post(environment.apiBaseUrl+"/bankAccounts/credit",data,optionRequete);
   }
-  public transfer(accountSource: string,accountDestination: string, amount : number, description:string){
-    let data={accountSource, accountDestination, amount, description }
+  public transfer(accountDestination: string,accountSource: string, amount : number, description:string){
+    let data={accountSource:accountSource, accountDestination:accountDestination,  amount :amount,description : description }
     return this.http.post(environment.apiBaseUrl+"/bankAccounts/transfer",data,optionRequete);
   }
 }

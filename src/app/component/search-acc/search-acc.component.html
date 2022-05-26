@@ -38,12 +38,12 @@
                   <tbody>
                   <tr *ngFor="let op of account.operationDtos">
                     <td>{{op.id}}</td>
-                    <td>{{op.date | date : 'dd-MM-yyyy:HH-mm-ss'}}</td>
+                    <td>{{op.date | date : 'dd-MM-yyyy'}}</td>
                     <td>{{op.operationType}}</td>
                     <td class="text-end">{{op.amount | number : '1.2-2'}}</td>
                   </tr>
                   </tbody>
-                </table><
+                </table>
                 <ul class="nav nav-pills d-flex align-content-center justify-content-center">
                   <li *ngFor="let item of [].constructor(account.totalPages);let page=index">
                     <a [ngClass]="page==currPage?'btn-primary':'btn-outline-primary'" (click)="gotoPage(page)" class="btn  ms-1 mt-1">{{page}}</a>
@@ -62,7 +62,8 @@
                     <option value="debit" (click)="handleSelectOp(2)">Debit</option>
                     <option value="transfer" (click)="handleSelectOp(3)">Transfer</option>
                   </select><br>
-                  <div>
+
+                  <div *ngIf="opNumber === 1 || opNumber === 2">
                     <div class="mb-3">
                       <label class="form-label">Amount :</label>
                       <input type="number" class="form-control" #amount>
@@ -93,6 +94,7 @@
                         <button class="btn btn-success" (click)="onSubmitOpT(destination.value, amount.value,desciption.value)">Save Operation</button>
                       </div>
                     </div>
+
                   </div>
                 </div>
               </div>

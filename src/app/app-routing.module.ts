@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import {CustumerComponent} from "./component/custumer/custumer.component";
 import {NavbarComponent} from "./component/navbar/navbar.component";
 import {AccountComponent} from "./component/account/account.component";
-import {AccComponent} from "./component/acc/acc.component"; // CLI imports router
 
 const routes: Routes = [
   {
@@ -12,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: "account",
-    component: AccComponent
+    component: AccountComponent
   }
   ]; // sets up routes constant where you define your routes
 
