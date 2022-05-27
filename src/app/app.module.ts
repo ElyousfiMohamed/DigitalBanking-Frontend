@@ -14,6 +14,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import { AccountComponent } from './component/account/account.component';
 import { SearchAccComponent } from './component/search-acc/search-acc.component';
 import { CustomerAccountsComponent } from './component/customer-accounts/customer-accounts.component';
+import { LoginComponent } from './component/login/login.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CustomerAccountsComponent } from './component/customer-accounts/custome
     AccountComponent,
     SearchAccComponent,
     CustomerAccountsComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

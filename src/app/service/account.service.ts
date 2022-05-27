@@ -6,9 +6,8 @@ import {Account} from "../model/bankaccount";
 
 const optionRequete = {
   headers: new HttpHeaders({
-    'Access-Control-Allow-Origin':'*',
     'Content-Type':'application/json',
-    'Access-Control-Allow-Methods':'POST',
+    'Authorization':`Bearer ${localStorage.getItem('token')}`,
   })
 };
 
@@ -20,10 +19,10 @@ export class AccountService {
   constructor(private http : HttpClient) { }
 
   public getAccount(accountId : string, page : number, size : number):Observable<Account>{
-    return this.http.get<Account>(environment.apiBaseUrl+"/bankAccounts/"+accountId+"/pgOperations?page="+page+"&size="+size);
+    return this.http.get<Account>(environment.apiBaseUrl+"/bankAccounts/"+accountId+"/pgOperations?page="+page+"&size="+size,optionRequete);
   }
   public getCustomerAccount(customerId : string):Observable<Account[]>{
-    return this.http.get<Account[]>(environment.apiBaseUrl+"/bankAccounts/"+customerId+"/customers");
+    return this.http.get<Account[]>(environment.apiBaseUrl+"/bankAccounts/"+customerId+"/customers",optionRequete);
   }
   public debit(accountId : string, amount : number, description:string){
     let data={accountId : accountId, amount : amount, description : description}
@@ -35,6 +34,6 @@ export class AccountService {
   }
   public transfer(accountDestination: string,accountSource: string, amount : number, description:string){
     let data={accountSource:accountSource, accountDestination:accountDestination,  amount :amount,description : description }
-    return this.http.post(environment.apiBaseUrl+"/bankAccounts/transfer",data);
+    return this.http.post(environment.apiBaseUrl+"/bankAccounts/transfer",data,optionRequete);
   }
 }

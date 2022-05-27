@@ -4,10 +4,15 @@ import {CustumerComponent} from "./component/custumer/custumer.component";
 import {NavbarComponent} from "./component/navbar/navbar.component";
 import {AccountComponent} from "./component/account/account.component";
 import {CustomerAccountsComponent} from "./component/customer-accounts/customer-accounts.component";
+import {LoginComponent} from "./component/login/login.component";
 
 const routes: Routes = [
   {
     path: "",
+    component: LoginComponent
+  },
+  {
+    path: "customer",
     component: CustumerComponent
   },
   {

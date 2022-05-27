@@ -26,7 +26,7 @@ export class CustumerService {
   }
 
   public getCustumersByKw(kw:string): Observable<Customer[]> {
-    return this.http.get<Customer[]>(`${this.apServerUrl}/customers/search?kw=${kw}`,optionRequete);
+    return this.http.get<Customer[]>(`${this.apServerUrl}/customers/search?kw=${kw}`);
   }
 
   public addCustumer(custumer: Customer): Observable<Customer> {
@@ -39,7 +39,7 @@ export class CustumerService {
   }
 
   public deleteCustumer(custumerId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apServerUrl}/customers/${custumerId}`);
+    return this.http.delete<void>(`${this.apServerUrl}/customers/${custumerId}`,optionRequete);
   }
 
   public getRandom(): Observable<Customer> {
