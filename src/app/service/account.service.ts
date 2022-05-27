@@ -22,6 +22,9 @@ export class AccountService {
   public getAccount(accountId : string, page : number, size : number):Observable<Account>{
     return this.http.get<Account>(environment.apiBaseUrl+"/bankAccounts/"+accountId+"/pgOperations?page="+page+"&size="+size);
   }
+  public getCustomerAccount(customerId : string):Observable<Account[]>{
+    return this.http.get<Account[]>(environment.apiBaseUrl+"/bankAccounts/"+customerId+"/customers");
+  }
   public debit(accountId : string, amount : number, description:string){
     let data={accountId : accountId, amount : amount, description : description}
     return this.http.post(environment.apiBaseUrl+"/bankAccounts/debit",data,optionRequete);

@@ -1,1 +1,24 @@
-<p>customer-accounts works!</p>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+
+<div class="container" style="padding-top: 150px">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2">
+    <div class="col" *ngFor="let b of bankAccounts">
+      <div class="card radius-10 border-start border-0 border-3 border-primary">
+        <div class="card-body">
+          <div class="d-flex align-items-center">
+            <div>
+              <p class="mb-0 text-secondary">Id du compte : {{b.id}}</p>
+              <p class="mb-0 text-secondary">Compte de Mr/Mme : {{customer.nom}}</p>
+              <p class="mb-0 text-secondary">Email : {{customer.email}}</p>
+              <h4 class="my-1 text-black">Balance : {{b.balance}}$</h4>
+            </div>
+            <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i
+              class="fa fa-dollar"></i>
+            </div>
+          </div>
+          <div><a class="btn btn-primary mt-2" [routerLink]="['/account',b]">Details du compte</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

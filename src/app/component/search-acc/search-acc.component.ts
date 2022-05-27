@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {AccountService} from "../../service/account.service";
 import {Account} from "../../model/bankaccount";
@@ -22,8 +22,11 @@ export class SearchAccComponent implements OnInit {
   dest: any;
   amnt: any;
   desc: any;
+  @Input() accountId: string | undefined;
 
   ngOnInit(): void {
+    if(this.accountId)
+      this.handleSearchAccount(this.accountId!)
   }
 
   handleSearchAccount(id: string) {
