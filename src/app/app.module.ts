@@ -18,6 +18,7 @@ import { LoginComponent } from './component/login/login.component';
 import {AuthInterceptorService} from "./service/auth-interceptor-service.service";
 import {AccountService} from "./service/account.service";
 import {SecurityService} from "./service/security.service";
+import { RegisterComponent } from './component/register/register.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {SecurityService} from "./service/security.service";
     SearchAccComponent,
     CustomerAccountsComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

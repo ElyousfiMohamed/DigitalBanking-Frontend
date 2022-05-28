@@ -5,6 +5,7 @@ import {NavbarComponent} from "./component/navbar/navbar.component";
 import {AccountComponent} from "./component/account/account.component";
 import {CustomerAccountsComponent} from "./component/customer-accounts/customer-accounts.component";
 import {LoginComponent} from "./component/login/login.component";
+import {RegisterComponent} from "./component/register/register.component";
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: "customerAccounts",
     component: CustomerAccountsComponent
+  },
+  {
+    path: "register",
+    component: RegisterComponent
   }
   ]; // sets up routes constant where you define your routes
 

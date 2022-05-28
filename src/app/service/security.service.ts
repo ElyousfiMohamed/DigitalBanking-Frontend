@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 import {Customer} from "../model/custumer";
-import {AppUser} from "../model/appUser";
+import {AppUser, NewAppUser} from "../model/appUser";
 
 const optionRequete = {
   headers: new HttpHeaders({
@@ -22,6 +22,10 @@ export class SecurityService {
   public login(appUser:AppUser): Observable<any> {
     let in_www_form = new URLSearchParams(Object.entries(appUser)).toString();
     return this.http.post<any>(`${this.apServerUrl}/login`, in_www_form,optionRequete);
+  }
+
+  public register(appUser:NewAppUser): Observable<any> {
+    return this.http.post<any>(`${this.apServerUrl}/register?user=${appUser.username}&pass=${appUser.password}&repass=${appUser.confirmedPassword}`,optionRequete);
   }
 
 }

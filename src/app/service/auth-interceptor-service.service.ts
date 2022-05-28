@@ -7,6 +7,7 @@ export class AuthInterceptorService implements HttpInterceptor {
     const token = sessionStorage.getItem('token');
 
     if (token) {
+      console.log('token from the interceptor', token);
       // If we have a token, we set it to the header
       request = request.clone({
         setHeaders: {Authorization: `Authorization token ${token}`}
