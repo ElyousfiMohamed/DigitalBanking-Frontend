@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CustumerService} from "./service/custumer.service";
 import {NavbarComponent} from "./component/navbar/navbar.component";
@@ -15,6 +15,9 @@ import { AccountComponent } from './component/account/account.component';
 import { SearchAccComponent } from './component/search-acc/search-acc.component';
 import { CustomerAccountsComponent } from './component/customer-accounts/customer-accounts.component';
 import { LoginComponent } from './component/login/login.component';
+import {AuthInterceptorService} from "./service/auth-interceptor-service.service";
+import {AccountService} from "./service/account.service";
+import {SecurityService} from "./service/security.service";
 
 @NgModule({
   declarations: [
@@ -36,7 +39,14 @@ import { LoginComponent } from './component/login/login.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [CustumerService],
+  providers: [CustumerService,
+    AccountService,
+    SecurityService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

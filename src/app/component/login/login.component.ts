@@ -25,7 +25,9 @@ export class LoginComponent implements OnInit {
       this.appUser.password = loginForm.value.password;
       this.security.login(this.appUser).subscribe(
         resp => {
-            localStorage.setItem('token',resp.accessToken);
+            console.log(resp);
+            sessionStorage.setItem('token',"Bearer "+resp.accessToken);
+            sessionStorage.setItem('username',this.appUser.username);
             this.router.navigate(['/customer']);
         }
       );
