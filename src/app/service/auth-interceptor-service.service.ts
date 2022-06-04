@@ -10,7 +10,7 @@ export class AuthInterceptorService implements HttpInterceptor {
       console.log('token from the interceptor', token);
       // If we have a token, we set it to the header
       request = request.clone({
-        setHeaders: {Authorization: `Authorization token ${token}`}
+        setHeaders: {Authorization: token}
       });
     }
 
